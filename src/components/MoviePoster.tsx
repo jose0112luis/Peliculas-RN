@@ -3,29 +3,36 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import { Movie } from '../interfaces/movieInterface';
 
 interface Props {
-  movie: Movie
+  movie: Movie,
+  height?: number,
+  width?: number,
 }
 
-export const MoviePoster = ({ movie }: Props) => {
+export const MoviePoster = ({ movie, height = 420, width = 300 }: Props) => {
 
-  const uri = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+  const aux1 = movie!
 
+  const uri2 = `https://image.tmdb.org/t/p/w500/4VkGlhGHUzZjnkoYNasW0qhoP3R.jpg`;
+  // const aux = movie.title;
+  // const uri = `https://image.tmdb.org/t/p/w500${ aux }`;
   // console.log(movie.poster_path);
   
   return (
     <View 
       style={{ 
-        width: 300, 
-        height: 420, 
-        // backgroundColor: 'red' 
+        width, 
+        height, 
+        marginHorizontal: 8, 
       }}
     >
-      <View style={ styles.imageContainer }>
+      <Text>{aux1.title}</Text>
+      <Text>{}</Text>
+      {/* <View style={ styles.imageContainer }>
         <Image 
           source={{ uri }}
           style={ styles.image }
         />
-      </View>
+      </View> */}
     </View>
   );
 }
