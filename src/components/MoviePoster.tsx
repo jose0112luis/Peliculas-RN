@@ -10,12 +10,7 @@ interface Props {
 
 export const MoviePoster = ({ movie, height = 420, width = 300 }: Props) => {
 
-  const aux1 = movie!
-
-  const uri2 = `https://image.tmdb.org/t/p/w500/4VkGlhGHUzZjnkoYNasW0qhoP3R.jpg`;
-  // const aux = movie.title;
-  // const uri = `https://image.tmdb.org/t/p/w500${ aux }`;
-  // console.log(movie.poster_path);
+  const uri = `https://image.tmdb.org/t/p/w500${ movie.poster_path }`;
   
   return (
     <View 
@@ -25,14 +20,12 @@ export const MoviePoster = ({ movie, height = 420, width = 300 }: Props) => {
         marginHorizontal: 8, 
       }}
     >
-      <Text>{aux1.title}</Text>
-      <Text>{}</Text>
-      {/* <View style={ styles.imageContainer }>
+      <View style={ styles.imageContainer }>
         <Image 
           source={{ uri }}
           style={ styles.image }
         />
-      </View> */}
+      </View>
     </View>
   );
 }

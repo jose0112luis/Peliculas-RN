@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, Dimensions, ScrollView } from 'react-native';
+import Carousel from 'react-native-reanimated-carousel';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import movieDB from '../api/movieDB';
+import { MoviePoster } from '../components/MoviePoster';
 import { useMovies } from '../hooks/useMovies';
-import { MovieDBNowPlaying } from '../interfaces/movieInterface';
+
+const { width: windowWidth } = Dimensions.get('window');
 
 export const HomeScreen = () => {
 
   const { nowPlaying, isLoading } = useMovies();
+  const { top } = useSafeAreaInsets();
 
   if ( isLoading ) {
     return (
@@ -19,10 +23,33 @@ export const HomeScreen = () => {
   }
     
   return (
-    <View>
-      <Text style={{ marginTop:50, fontSize: 24 }}>HomeScreen</Text>
-      <Text>{ nowPlaying[0]?.title }</Text>
-      <Text>HomeScreen</Text>
-    </View>
+    <ScrollView>
+      <View style={{ marginTop: top }}>
+
+        {/* carousel principal - grande */}
+        <View style={{ height: 425 }}>
+          <Carousel 
+            data={ nowPlaying }    //arreglo de datos
+            renderItem={ ({ item }) => <MoviePoster movie={ item } /> }   //retorna un React.ReactElement/JSX
+            width={ 300 }   // estos accesorios son para el artículo en el medio
+            height={ 420 }   // estos accesorios son para el artículo en el medio
+            mode='parallax'    //muestra el estilo "parallax" del paquete
+            style={{ width: windowWidth, justifyContent: 'center' }}   //se refiere al contenedor del carrusel, no al elemento en sí
+            pagingEnabled={ true }    //la paginación en falso permite hacer un desplazamiento ultrarrápido
+            // windowSize={ 2 }  //y ese desplazamiento ultrarrápido se detiene en múltiplos de tamaño de ventana
+            snapEnabled   // el chasquido ayuda a detenerse exactamente en 1 elemento, no en medio de dos más o menos
+            modeConfig={{
+              parallaxScrollingScale: 0.9,   // Cómo se verá el elemento "principal"
+              parallaxScrollingOffset: 40,   // Qué tan separados estarán los elementos adyacentes
+              parallaxAdjacentItemScale: 0.75,   // Qué tan grandes se verán los elementos adyacentes en comparación con el elemento "principal"
+            }}
+          />
+        </View>
+
+        {/* carousel de películas populares */}
+        {/* <MoviePoster movie={ nowPlaying } /> */}
+
+      </View>
+    </ScrollView>
   );
 }
