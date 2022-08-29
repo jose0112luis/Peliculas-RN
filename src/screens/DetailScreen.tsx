@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { View, Text, Image, StyleSheet, Dimensions, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, ScrollView, ActivityIndicator } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
-import IconI from 'react-native-vector-icons/Ionicons';
 
 import { RootStackParams } from '../navigation/Navigation';
 import { useMovieDetails } from '../hooks/useMovieDetails';
+import { MovieDetails } from '../components/MovieDetails';
 
 const screenHeight = Dimensions.get('screen').height; 
 
@@ -35,17 +35,20 @@ export const DetailScreen = ({ route }: Props) => {
         <Text style={ styles.subTitle }>{ movie.original_title }</Text>
         <Text style={ styles.title }>{ movie.title }</Text>
       </View>
-      <View style={ styles.marginContainer }>
-        <IconI name='star-outline' size={ 25 } />
-      </View>
+      { 
+        isLoading 
+          ? <ActivityIndicator size={ 35 } color='grey' style={{ marginTop:20 }} /> 
+          : <MovieDetails moveiFull={ movieFull! } cast={ cast } />
+      }
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   imgContainer: {
-    width: '100%',
-    height: screenHeight * 0.7, //70% del screen
+    marginHorizontal: '2.5%',
+    width: '95%',
+    height: screenHeight * 0.65, //65% del screen
     shadowColor: "#000000",
     shadowOffset: {
       width: 2,
@@ -53,7 +56,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.74,
     shadowRadius: 6.27,
-    elevation: 25,
+    elevation: 15,
     // borderBottomLeftRadius: 30,
     // borderBottomRightRadius: 30,
   },
@@ -75,7 +78,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontWeight: '500',
+    fontWeight: '700',
     color: '#000'
   },
   
