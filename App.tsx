@@ -10,10 +10,8 @@ import { FadeScreen } from './src/screens/FadeScreen';
 const App = () => {
   return (
     <NavigationContainer>
-      {/* Rest of your app code */}
-      {/* <GestureHandlerRootView style={{ flex: 1 }}>{ }</GestureHandlerRootView>; */}
-      {/* <Navigation /> */}
-      <FadeScreen />
+      <Navigation />
+      {/* <FadeScreen /> */}
     </NavigationContainer>
   );
 }
