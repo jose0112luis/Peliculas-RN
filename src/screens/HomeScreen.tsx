@@ -23,8 +23,7 @@ export const HomeScreen = () => {
     const uri = `https://image.tmdb.org/t/p/w500${ movie.poster_path }`;
 
     const [primary, secondary] = await getImageColors( uri );
-    console.log({primary, secondary});
-    
+    // console.log({primary, secondary});
   }
 
   if ( isLoading ) {
