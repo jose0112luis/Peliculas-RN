@@ -50,7 +50,7 @@ export const DetailScreen = ({ route, navigation }: Props) => {
         activeOpacity={ 0.4 }
       >
         <View style={ styles.fondoBTN }></View>
-        <IconI name='arrow-back' color='#FFF' size={ 60 } />
+        <IconI name='arrow-back' color='#FFF' size={ 40 } />
       </TouchableOpacity>
     </ScrollView>
   );
@@ -95,14 +95,14 @@ const styles = StyleSheet.create({
     zIndex: 999,
     elevation: 9,
     top: 20,
-    left: 10,
+    left: 20,
   },
   fondoBTN: {
     position: 'absolute',
-    width: 65,
-    height: 65,
-    top: -2.5,
-    left: -3,
+    width: 45,
+    height: 45,
+    top: -1.5,
+    left: -3.5,
     backgroundColor: '#000',
     opacity: 0.5,
     borderRadius: 50,
