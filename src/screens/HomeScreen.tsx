@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { View, ActivityIndicator, Dimensions, ScrollView } from 'react-native';
+import ImageColors from 'react-native-image-colors';
 import Carousel from 'react-native-reanimated-carousel';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -15,6 +16,14 @@ export const HomeScreen = () => {
 
   const { nowPlaying, popular, topRated, upcoming, isLoading } = useMovies();
   const { top } = useSafeAreaInsets();
+
+  const getPosterColors = async ( index: number ) => {
+    const movie = nowPlaying[index];
+    const uri = `https://image.tmdb.org/t/p/w500${ movie.poster_path }`;
+    const colors = await ImageColors.getColors(uri, {})
+    console.log(colors);
+    
+  }
 
   if ( isLoading ) {
     return (
@@ -46,6 +55,7 @@ export const HomeScreen = () => {
                 parallaxScrollingOffset: 50,   // Qué tan separados estarán los elementos adyacentes
                 parallaxAdjacentItemScale: 0.65,   // Qué tan grandes se verán los elementos adyacentes en comparación con el elemento "principal"
               }}
+              onSnapToItem={ index => getPosterColors(index) }
             />
           </View>
 

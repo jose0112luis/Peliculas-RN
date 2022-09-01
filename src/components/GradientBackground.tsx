@@ -11,10 +11,10 @@ export const GradientBackground = ({ children }: Props) => {
   return (
     <View style={{ flex: 1 }}>
       <LinearGradient 
-        colors={[ '#084F6A', '#75CEDB', '#FFF' ]}
+        colors={[ '#084F6A', '#75CEDB', '#FFFFFF' ]}
         style={{ ...StyleSheet.absoluteFillObject }}
         start={{ x: 0.1, y: 0.1 }}
-        end={{ x: 0.5, y: 0.7 }}
+        end={{ x: 0.5, y: 0.75 }}
       />
       { children }
     </View>
