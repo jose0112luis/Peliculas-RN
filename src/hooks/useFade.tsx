@@ -1,13 +1,13 @@
 import { useRef } from 'react';
-import { Animated } from 'react-native';
 
+import { Animated } from 'react-native';
 
 export const useFade = () => {
 
   // opacity es la variable de referencia del componente hijo
   const opacity = useRef( new Animated.Value(0) ).current;  //creamos una nueva instancia de Animated
 
-  const fadeIn = () => {
+  const fadeIn = ( callback?: Function ) => {
     //para manejar el tiempo
     Animated.timing(
       opacity,
@@ -16,7 +16,7 @@ export const useFade = () => {
         duration: 300,  //la duración en milisegundos 
         useNativeDriver: true  //esto va hacer q tambn sea acelerado por hardware
       }
-    ).start();
+    ).start( () => callback ? callback() : null );
   }
 
   const fadeOut = () => {

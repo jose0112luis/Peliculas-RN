@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import { View, ActivityIndicator, Dimensions, ScrollView } from 'react-native';
 import ImageColors from 'react-native-image-colors';
@@ -28,6 +28,13 @@ export const HomeScreen = () => {
 
     setMainColors({ primary, secondary });
   }
+  
+  useEffect(() => {
+    if ( nowPlaying.length > 0 ) {
+      getPosterColors(0);
+    }
+  }, [ nowPlaying ])
+  
 
   if ( isLoading ) {
     return (
