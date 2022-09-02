@@ -19,13 +19,13 @@ export const useFade = () => {
     ).start( () => callback ? callback() : null );
   }
 
-  const fadeOut = () => {
+  const fadeOut = (duration: number = 300) => {
     //para manejar el tiempo
     Animated.timing(
       opacity,
       {
         toValue: 0,  //para q el valor de la opacidad pace de 1 a 0
-        duration: 300,  //la duración en milisegundos 
+        duration,  //la duración en milisegundos 
         useNativeDriver: true  //esto va hacer q tambn sea acelerado por hardware
       }
     ).start();

@@ -28,8 +28,8 @@ export const FadeScreen = () => {
         }} 
       />
 
-      <Button title='Fade In' onPress={ fadeIn } />
-      <Button title='Fade Out' onPress={ fadeOut } />
+      <Button title='Fade In' onPress={ () => fadeIn() } />
+      <Button title='Fade Out' onPress={ () => fadeOut() } />
     </View>
   );
 }
