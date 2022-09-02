@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { createContext, useState } from 'react';
 
 interface ImageColor {
@@ -18,8 +19,8 @@ export const GradientContext = createContext({} as ContextProps);
 export const GradientProvider = ({ children }: any) => {
 
   const [colors, setColors] = useState<ImageColor>({
-    primary: 'transparent',
-    secondary: 'transparent'
+    primary: 'red',
+    secondary: 'blue'
   });
 
   const [prevColors, setPrevColors] = useState<ImageColor>({
